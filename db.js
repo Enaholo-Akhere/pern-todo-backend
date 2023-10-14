@@ -1,16 +1,16 @@
 const Pool = require('pg').Pool;
 
-// const pool = new Pool({
-//   user: 'postgres',
-//   password: 'asdf',
-//   // host: 'localhost',
-//   host: 'ep-steep-leaf-20820975.us-east-2.aws.neon.tech',
-//   port: 5432,
-//   database: 'neondb',
-// });
+const pool_dev = new Pool({
+  user: 'postgres',
+  password: 'asdf',
+  host: 'localhost',
+  port: 5432,
+  database: 'perntodo',
+});
 
-const pool = new Pool({
+const pool_prod = new Pool({
   connectionString: process.env.POSTGRES_URL + '?sslmode=require',
 });
 
+const pool = process.env.NODE_ENV === 'production' ? pool_prod : pool_dev;
 module.exports = pool;

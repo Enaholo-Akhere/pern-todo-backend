@@ -35,7 +35,7 @@ const updateTodo = async (req, res) => {
   const { description } = req.body;
   try {
     const updatedTodo = await pool.query(queries.updateTodo, [description, id]);
-    res.json({ message: 'todo was updated', data: updatedTodo.rows });
+    res.json({ message: 'todo was updated', data: updatedTodo.rows[0] });
   } catch (error) {
     console.log('error', error);
   }
