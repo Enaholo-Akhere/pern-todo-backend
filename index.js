@@ -1,10 +1,13 @@
 const express = require('express');
 const cors = require('cors');
 const todo_router = require('./controller/todo-controller');
+const dotenv = require('dotenv');
+
+dotenv.config();
 
 const app = express();
 
-const PORT = 5000;
+const PORT = process.env.PORT;
 
 //middleware
 app.use(cors());
